@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="box1"></div>
+
+<div class="box2"></div>
+
+</body>
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/sockjs-0.3.4.min.js"></script>
+<script>
+    var sockJS = new SockJS("http://localhost:8088/echoSocketHander/ID=demo1");
+    sockJS.onopen = function (evt) {
+        sockJS.send("hello");
+    }
+    sockJS.onmessage = function (evt) {
+        $('.box1').html(evt.data);
+    }
+</script>
+</html>
